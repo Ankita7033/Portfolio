@@ -1,34 +1,43 @@
 import { motion } from "motion/react";
-import { FaReact, FaNodeJs, FaDocker, FaAws, FaFigma, FaGitAlt, FaServer } from "react-icons/fa";
-import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql, SiGraphql } from "react-icons/si";
+import { FaNodeJs, FaDocker, FaAws, FaFigma, FaGitAlt, FaServer, FaPython } from "react-icons/fa";
+import { SiTypescript, SiJavascript, SiCplusplus, SiTensorflow, SiPytorch, SiScikitlearn, SiPandas, SiPostgresql, SiMongodb } from "react-icons/si";
 
 export function Skills() {
   const skillCategories = [
     {
-      title: "Frontend",
+      title: "Languages",
       skills: [
-        { name: "React", level: 95, icon: FaReact, color: "text-[#61DAFB]" },
-        { name: "TypeScript", level: 90, icon: SiTypescript, color: "text-[#3178C6]" },
-        { name: "Next.js", level: 88, icon: SiNextdotjs, color: "text-foreground" },
-        { name: "Tailwind CSS", level: 92, icon: SiTailwindcss, color: "text-[#06B6D4]" },
+        { name: "Python", icon: FaPython, color: "text-[#3776AB]" },
+        { name: "TypeScript", icon: SiTypescript, color: "text-[#3178C6]" },
+        { name: "JavaScript", icon: SiJavascript, color: "text-[#F7DF1E]" },
+        { name: "C++", icon: SiCplusplus, color: "text-[#00599C]" },
+      ],
+    },
+    {
+      title: "ML Libraries",
+      skills: [
+        { name: "TensorFlow", icon: SiTensorflow, color: "text-[#FF6F00]" },
+        { name: "PyTorch", icon: SiPytorch, color: "text-[#EE4C2C]" },
+        { name: "Scikit-Learn", icon: SiScikitlearn, color: "text-[#F7931E]" },
+        { name: "Pandas", icon: SiPandas, color: "text-[#150458]" },
       ],
     },
     {
       title: "Backend",
       skills: [
-        { name: "Node.js", level: 85, icon: FaNodeJs, color: "text-[#339933]" },
-        { name: "PostgreSQL", level: 82, icon: SiPostgresql, color: "text-[#4169E1]" },
-        { name: "GraphQL", level: 80, icon: SiGraphql, color: "text-[#E10098]" },
-        { name: "REST APIs", level: 90, icon: FaServer, color: "text-muted-foreground" },
+        { name: "Node.js", icon: FaNodeJs, color: "text-[#339933]" },
+        { name: "PostgreSQL", icon: SiPostgresql, color: "text-[#4169E1]" },
+        { name: "MongoDB", icon: SiMongodb, color: "text-[#47A248]" },
+        { name: "REST APIs", icon: FaServer, color: "text-muted-foreground" },
       ],
     },
     {
-      title: "Tools & Others",
+      title: "Platforms & Tools",
       skills: [
-        { name: "Git", level: 93, icon: FaGitAlt, color: "text-[#F05032]" },
-        { name: "Docker", level: 75, icon: FaDocker, color: "text-[#2496ED]" },
-        { name: "Figma", level: 88, icon: FaFigma, color: "text-[#F24E1E]" },
-        { name: "AWS", level: 70, icon: FaAws, color: "text-[#FF9900]" },
+        { name: "Docker", icon: FaDocker, color: "text-[#2496ED]" },
+        { name: "AWS", icon: FaAws, color: "text-[#FF9900]" },
+        { name: "Git", icon: FaGitAlt, color: "text-[#F05032]" },
+        { name: "Figma", icon: FaFigma, color: "text-[#F24E1E]" },
       ],
     },
   ];
@@ -58,7 +67,7 @@ export function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -69,32 +78,19 @@ export function Skills() {
               className="glass rounded-3xl p-8 hover:bg-white/40 transition-all duration-300"
             >
               <h3 className="text-2xl mb-6">{category.title}</h3>
-              <div className="space-y-6">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {category.skills.map((skill, skillIndex) => (
-                  <div key={skill.name}>
-                    <div className="flex justify-between mb-2">
-                      <div className="flex items-center gap-2">
-                        <skill.icon className={`w-5 h-5 ${skill.color}`} />
-                        <span className="text-sm font-medium">{skill.name}</span>
-                      </div>
-                      <span className="text-sm text-muted-foreground">
-                        {skill.level}%
-                      </span>
-                    </div>
-                    <div className="h-2 bg-secondary/50 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{
-                          delay: categoryIndex * 0.1 + skillIndex * 0.1,
-                          duration: 1,
-                          ease: "easeOut",
-                        }}
-                        className="h-full bg-gradient-to-r from-primary to-accent rounded-full"
-                      />
-                    </div>
-                  </div>
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.1 }}
+                    className="flex flex-col items-center justify-center p-4 rounded-2xl bg-secondary/20 hover:bg-secondary/40 transition-colors border border-border/50 hover:border-primary/50 group"
+                  >
+                    <skill.icon className={`w-10 h-10 mb-3 transition-transform group-hover:scale-110 ${skill.color}`} />
+                    <span className="text-xs font-medium text-center">{skill.name}</span>
+                  </motion.div>
                 ))}
               </div>
             </motion.div>
