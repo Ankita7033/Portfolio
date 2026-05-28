@@ -1,32 +1,34 @@
 import { motion } from "motion/react";
+import { FaReact, FaNodeJs, FaDocker, FaAws, FaFigma, FaGitAlt, FaServer } from "react-icons/fa";
+import { SiTypescript, SiNextdotjs, SiTailwindcss, SiPostgresql, SiGraphql } from "react-icons/si";
 
 export function Skills() {
   const skillCategories = [
     {
       title: "Frontend",
       skills: [
-        { name: "React", level: 95 },
-        { name: "TypeScript", level: 90 },
-        { name: "Next.js", level: 88 },
-        { name: "Tailwind CSS", level: 92 },
+        { name: "React", level: 95, icon: FaReact, color: "text-[#61DAFB]" },
+        { name: "TypeScript", level: 90, icon: SiTypescript, color: "text-[#3178C6]" },
+        { name: "Next.js", level: 88, icon: SiNextdotjs, color: "text-foreground" },
+        { name: "Tailwind CSS", level: 92, icon: SiTailwindcss, color: "text-[#06B6D4]" },
       ],
     },
     {
       title: "Backend",
       skills: [
-        { name: "Node.js", level: 85 },
-        { name: "PostgreSQL", level: 82 },
-        { name: "GraphQL", level: 80 },
-        { name: "REST APIs", level: 90 },
+        { name: "Node.js", level: 85, icon: FaNodeJs, color: "text-[#339933]" },
+        { name: "PostgreSQL", level: 82, icon: SiPostgresql, color: "text-[#4169E1]" },
+        { name: "GraphQL", level: 80, icon: SiGraphql, color: "text-[#E10098]" },
+        { name: "REST APIs", level: 90, icon: FaServer, color: "text-muted-foreground" },
       ],
     },
     {
       title: "Tools & Others",
       skills: [
-        { name: "Git", level: 93 },
-        { name: "Docker", level: 75 },
-        { name: "Figma", level: 88 },
-        { name: "AWS", level: 70 },
+        { name: "Git", level: 93, icon: FaGitAlt, color: "text-[#F05032]" },
+        { name: "Docker", level: 75, icon: FaDocker, color: "text-[#2496ED]" },
+        { name: "Figma", level: 88, icon: FaFigma, color: "text-[#F24E1E]" },
+        { name: "AWS", level: 70, icon: FaAws, color: "text-[#FF9900]" },
       ],
     },
   ];
@@ -71,7 +73,10 @@ export function Skills() {
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skill.name}>
                     <div className="flex justify-between mb-2">
-                      <span className="text-sm">{skill.name}</span>
+                      <div className="flex items-center gap-2">
+                        <skill.icon className={`w-5 h-5 ${skill.color}`} />
+                        <span className="text-sm font-medium">{skill.name}</span>
+                      </div>
                       <span className="text-sm text-muted-foreground">
                         {skill.level}%
                       </span>

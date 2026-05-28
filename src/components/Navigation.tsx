@@ -32,14 +32,16 @@ export function Navigation({ currentSection, setCurrentSection, darkMode, toggle
             <button
               key={item.id}
               onClick={() => setCurrentSection(item.id)}
-              className={`relative p-2 rounded-lg transition-all ${
+              className={`relative p-2 rounded-lg transition-all group ${
                 currentSection === item.id
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
               }`}
-              title={item.label}
             >
               <item.icon className="w-5 h-5" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-foreground text-background text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                {item.label}
+              </span>
               {currentSection === item.id && (
                 <motion.div
                   layoutId="navIndicator"
